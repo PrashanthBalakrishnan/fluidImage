@@ -1,12 +1,26 @@
-// const zoom = document.querySelector(".zoom")
-// const previews = document.querySelector(".images img")
-// const original = document.querySelector(".full-size")
-// const imgText = document.querySelector(".caption")
+const modal = document.querySelector(".modal");
+const previews = document.querySelectorAll(".pic img");
+const original = document.querySelector(".full-size");
+const imgText = document.querySelector(".caption");
 
 
-// previews.array.forEach(previews => {
-//     previews.addEventListener('click', () => {
-//         zoom.classList.add('open');
-//     })
+previews.forEach((preview) => {
+    preview.addEventListener("click", () => {
+        modal.classList.add("open");
+        original.classList.add('open');
+        //dynamic change for images and text
 
-// })
+        const originalSrc = preview.getAttribute("data-original")
+        original.src = `./full/${originalSrc}`;
+        const altText = preview.alt;
+        imgText.textContent = altText;
+    });
+
+});
+
+modal.addEventListener("click", (e) => {
+    if (e.target.classList.contains('modal')) {
+        modal.classList.remove("open");
+        original.classList.remove("open");
+    }
+});
